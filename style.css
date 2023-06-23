@@ -1,3 +1,21 @@
+:root {
+    --sans-font: sans-serif;
+}
+
+body {
+    margin: 0;
+}
+
 header {
     background-color: black;
+    height: 62px;
+    display: flex;
+    align-items: center;
+}
+
+.header-title {
+    color: white;
+    margin-left: 60px;
+    font-size: 1.4em;
+    font-family: var(--sans-font);
 }
