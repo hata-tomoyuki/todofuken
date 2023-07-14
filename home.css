@@ -1,5 +1,8 @@
+@import "common.css";
 body{
-color: rgb(47, 110, 47);
+color: rgb(65, 156, 65);
+font-family: roboto, sans-serif;
+
 }
 .atama h1{
     color: white;
