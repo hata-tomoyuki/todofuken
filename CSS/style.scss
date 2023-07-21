@@ -1,26 +1,128 @@
 @import url("common.css");
 
+// color
 $green: rgb(74, 139, 57);
+
+// value
+$hnav-gap: 26px;
+
+// font
+$roboto: 'roboto', sans-serif;
 
 body {
     margin: 0;
 }
 
-header {
-    background-color: white;
-    border-bottom: silver 1px solid;
-    height: 56px;
+.mainvisual {
+    position: relative;
     display: flex;
+    justify-content: center;
     align-items: center;
+
+    .topimages {
+        height: 480px;
+        margin: 0 auto;
+        text-align: center;
+        position: relative;
+
+        .topimage-cover {
+            width: 100vw;
+            height: 480px;
+            background-color: rgb(33,33,33);
+            opacity: .6;
+            position: absolute;
+        }
+        
+        .topimage {
+            background: white url(../Images/top.png) center center/cover no-repeat;
+            height: 480px;
+            width: 100vw;
+        }
+    }
+
+    .pagetitle {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: white;
+        font-family: $roboto;
+
+        .h2-container {
+            h2 {
+                font-size: 39px;
+                margin: 20px;
+            }
+
+            &::after {
+                content: '';
+                display: block;
+                width: 95px;
+                border: 4px solid $green;
+                margin: 0 auto;
+            }
+        }
+
+        h3 {
+            margin: 20px;
+            font-size: 28px;
+            font-weight: normal;
+        }
+    }
+}
+
+header.scrolled {
+    background-color: white;
+    border-bottom: rgba(204,204,204,1) 1px solid;
+
+    .htitle {
+        color: $green;
+    }
+
+    .hnav-elem {
+        color: white;
+
+        .hnav-link {
+            color: rgb(106,106,106);
+    
+            &:hover {
+                color: black;
+            }
+        }
+
+        .cur-page {
+            color: black;
+        }
+    }
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: none;
+    height: 55px;
+    display: flex;
+    width: 100%;
+    align-items: baseline;
     justify-content: space-between;
+    z-index: 99;
+
+    .htitle,.hnav-elem {
+        transform: translateY(2px);
+    }
+
+    &, &:not(.scrolled), & > * {
+        transition: .2s;
+    }
 }
 
 .htitle {
-    color: $green;
-    margin-left: 30px;
+    color: white;
+    margin-left: 28px;
     font-size: 10px;
-    font-family: 'roboto', sans-serif;
-    letter-spacing: 2px;
+    font-family: $roboto;
+    letter-spacing: 1.5px;
 
     h1 {
         font-weight: 500;
@@ -33,19 +135,38 @@ header {
 
 .hnav-ul {
     display: flex;
-    gap: 30px;
+    gap: $hnav-gap;
     flex-direction: row;
     align-items: center;
 }
 
 .hnav-elem {
     list-style: none;
+    position: relative;
 
     &+ &::before {
-        display: block;
+        position: absolute;
+        left: calc($hnav-gap / -2 - 1px);
+        top: 50%;
+        transform: translateY(-2px);
         content: "";
         width: 2px;
         height: 2px;
-        background-color: silver;
+        background-color: rgb(158,158,158);
+    }
+
+    .hnav-link {
+        text-decoration: none;
+        color: rgba(255,255,255,.87);
+        font-family: $roboto;
+
+        &:hover {
+            color: white;
+        }
+    }
+
+    .cur-page {
+        font-weight: bold;
+        color: white;
     }
 }
