@@ -1,0 +1,80 @@
+@import "common.css";
+body{
+color: rgb(63, 150, 63);
+font-family: roboto, sans-serif;
+}
+
+*{
+    margin: 0;
+}
+.container{
+    text-align: left;
+    margin: 0 auto;
+    max-width: 1184px;
+}
+a{
+    color:rgb(63, 150, 63) ;
+}
+.tyuou{
+text-align: center;
+}
+.itiwa{
+    text-align: center;
+}
+.itiwa img{
+height: 800px;
+}
+.unnei{
+    margin:30px;
+}
+.syokai {
+border-top: 1px solid;
+border-bottom: 1px solid;
+border-color: gray;
+}
+.syokai h4{
+    line-height: 3;
+    margin: 20px;
+}
+.tuduki{
+    margin-bottom: 50px;
+}
+.story{
+    display: flex;
+    justify-content: center;
+}
+.story h2{
+    font-size: 27px;
+margin: 30px;
+}
+.story a{
+border: 1px solid;
+border-radius: 5px;
+text-decoration: none;
+}
+.s1-5 a{
+    padding:5px 70px;
+    }
+    .s6-11 a{
+    padding:5px 70px;
+    }
+    .s12-14 a{
+    padding:5px 70px;
+    }
+.member h2{
+    margin: 50px;
+}
+.maru{
+    margin:12px;
+    color:black;
+}
+.maru img{
+    height: 370px;
+}
+.maru p{
+    text-align: center;
+}
+.gazou{
+    display: flex;
+    flex-wrap: wrap;
+}

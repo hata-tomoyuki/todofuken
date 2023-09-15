@@ -1,0 +1,10 @@
+@import "common.css";
+body{
+font-family: roboto, sans-serif;
+}
+p{
+    font-size: 20px;
+}
+.story{
+text-align: center;
+}
