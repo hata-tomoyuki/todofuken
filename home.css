@@ -1,11 +1,23 @@
 @import "common.css";
 body{
-color: rgb(65, 156, 65);
+color: rgb(63, 150, 63);
 font-family: roboto, sans-serif;
-
 }
-.atama h1{
-    color: white;
+*{
+    margin: 0;
+}
+.container{
+    margin: 0 auto;
+    max-width: 1184px;
+}
+h1{
+    font-size: 40px;
+}
+h3{
+    font-size:25px;
+}
+.a{
+    line-height: 4;
 }
 .atama h3{
     color: white;
@@ -14,5 +26,18 @@ a{
     color: blue;
 }
 .link a{
-    color:rgb(47, 110, 47) ;
+    color:rgb(63, 150, 63) ;
+}
+.link h3{
+    text-align: center;
+}
+img{
+    height: 370px;
+}
+.link{
+    margin: 10px;
+}
+.url{
+    display: flex;
+    justify-content: center;
 }
