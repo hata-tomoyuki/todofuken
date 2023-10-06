@@ -28,7 +28,7 @@ body {
         .topimage-cover {
             width: 100vw;
             height: 480px;
-            background-color: rgb(33,33,33);
+            background: rgb(33,33,33);
             opacity: .6;
             position: absolute;
         }
@@ -77,11 +77,15 @@ body {
 }
 
 header.scrolled {
-    background-color: white;
+    background: white;
     border-bottom: rgba(204,204,204,1) 1px solid;
 
-    .htitle {
+    .htitle h1 a {
         color: $green;
+    }
+
+    .hamburger > span {
+        background-color: $green;
     }
 
     .hnav-elem {
@@ -111,11 +115,7 @@ header {
     width: 100%;
     align-items: baseline;
     justify-content: space-between;
-    z-index: 99;
-
-    .htitle,.hnav-elem {
-        transform: translateY(2px);
-    }
+    z-index: 1;
 
     &, &:not(.scrolled), & > * {
         transition: .2s;
@@ -123,68 +123,88 @@ header {
 }
 
 .htitle {
-    color: white;
-    margin-left: 28px;
-    font-size: 10px;
+    margin-top: 4px;
+    margin-left: 48px;
+    font-size: 9.4px;
     font-family: $roboto;
     letter-spacing: 1.5px;
 
-    h1 {
+    h1 > a {
         font-weight: 500;
+        color: white;
+        text-decoration: none;
+    }
+}
+
+.black-screen {
+    background-color: black;
+    position: fixed;
+    transition: .5s;
+    width: 0; height: 0;
+    top: 0; right: 0;
+    z-index: 2;
+    opacity: 0;
+
+    &.displayed {
+        width: 100vw; height: 100vh;
+        opacity: 0.6;
     }
 }
 
 .hnav-container {
-    margin-right: 30px;
-}
+    z-index: 3;
 
-.hnav-ul {
-    display: flex;
-    gap: $hnav-gap;
-    flex-direction: row;
-    align-items: center;
-}
+    position: fixed;
+    transform: translateX(-250px);
+    transition: .5s cubic-bezier(0.4,0,0.2,1);
+    width: 250px; height: 100%;
+    background-color: white;
 
-.hnav-elem {
-    list-style: none;
-    position: relative;
+    
 
-    &+ &::before {
-        position: absolute;
-        left: calc($hnav-gap / -2 - 1px);
-        top: 50%;
-        transform: translateY(-2px);
-        content: "";
-        width: 2px;
-        height: 2px;
-        background-color: rgb(158,158,158);
+    &.opened {
+        transform: translateX(0);
     }
 
-    .hnav-link {
-        text-decoration: none;
-        color: rgba(255,255,255,.87);
-        font-family: $roboto;
+    .hnav-ul {
+        display: flex;
+        margin-top: 55.75px;
+        flex-direction: column;
+    }
 
-        &:hover {
-            color: white;
+    .hnav-elem {
+        list-style: none;
+        position: relative;
+        font-family: $roboto;
+        margin: 10.7px 0;
+    
+        .hnav-link {
+            text-decoration: none;
+            color: rgba(106,106,106,1);
+            font-family: $roboto;
+
+            &:hover {
+                color: black;
+            }
+        }
+    
+        .cur-page {
+            font-weight: normal;
+            color: black;
         }
     }
-
-    .cur-page {
-        font-weight: bold;
-        color: white;
-    }
 }
 
+
 footer {
-    background-color: $green;
+    background: $green;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 85px;
 
     .flink-text {
-        background-color: rgba(255,255,255,0);
+        background: rgba(255,255,255,0);
         border: 1px solid white;
         border-radius: 5px;
         padding: 10px;
@@ -197,7 +217,134 @@ footer {
         transition: .2s;
 
         &:hover {
-            background-color: rgba(255,255,255,.2);
+            background: rgba(255,255,255,.2);
+        }
+    }
+}
+
+.hamburger {
+    width: 32px; height: 32px;
+    position: absolute;
+    top: 12px; left: 8px;
+    background: none;
+    border: none;
+    z-index: 99;
+
+    &:hover {
+        background: rgba(183,153,81,0.1199999973);
+    }
+
+    & > span {
+        $width: 18px;
+
+        display: block;
+        position: relative;
+        left: calc((32px - $width)/2);
+        height: 2px;
+        width: $width;
+        background: white;
+        transition: .4s;
+
+        &:nth-child(1) {
+            top: 10px;
+        }
+
+        &:nth-child(2) {
+            top: 13px;
+        }
+
+        &:nth-child(3) {
+            top: 16px;
+        }
+    }
+
+    &.clicked {
+
+        & > span {
+            $width: 18px;
+
+            display: block;
+            position: relative;
+            left: calc((32px - $width)/2);
+            height: 2px;
+            width: $width;
+            background: $green;
+
+            &:nth-child(1) {
+                top: 15px;
+                transform: rotate(135deg);
+            }
+
+            &:nth-child(2) {
+                opacity: 0;
+            }
+
+            &:nth-child(3) {
+                top: 11px;
+                transform: rotate(225deg);
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    header {
+        .hamburger {
+            display: none;
+        }
+
+        .htitle {
+            margin-left: 28px;
+        }
+    }
+
+    .hnav-container {
+        top: 0;
+        right: 0;
+        display: flex;
+        margin-right: 30px;
+        background: none;
+        transform: translate(0);
+        transition: 0s;
+        width: auto; height: 55px;
+        
+        .hnav-ul {
+            display: flex;
+            gap: $hnav-gap;
+            margin: 0;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .hnav-elem {
+            margin: 0;
+
+            &:nth-child(n+2) {
+                &::before {
+                    display: block;
+                    position: absolute;
+                    left: calc($hnav-gap / -2 - 1px);
+                    top: 50%;
+                    transform: translateY(-2px);
+                    content: "";
+                    width: 2px;
+                    height: 2px;
+                    background: rgb(158,158,158);
+                }
+            }
+
+            .hnav-link {
+                color: rgba(255,255,255,.87);
+
+                &:hover {
+                    color: white;
+                }
+            }
+
+            .cur-page {
+                font-weight: bold;
+                color: white;
+            }
         }
     }
 }
